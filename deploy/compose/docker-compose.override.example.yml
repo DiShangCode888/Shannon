@@ -88,7 +88,7 @@ services:
   # Prometheus for metrics debugging
   prometheus:
     ports:
-      - "9090:9090"
+      - "9091:9091"
 
   # Grafana for metrics visualization
   grafana:

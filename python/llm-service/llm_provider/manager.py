@@ -365,6 +365,7 @@ class LLMManager:
             "deepseek": ("openai_compatible", "DEEPSEEK_API_KEY"),
             "qwen": ("openai_compatible", "QWEN_API_KEY"),
             "ollama": ("openai_compatible", "OLLAMA_API_KEY"),
+            "vllm": ("openai_compatible", "VLLM_API_KEY"),
             # Others exist in config but not yet implemented here: mistral/meta/cohere/bedrock
         }
 

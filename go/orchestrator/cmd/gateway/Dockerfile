@@ -9,6 +9,7 @@ RUN apk add --no-cache git
 # Copy go mod files
 COPY go/orchestrator/go.mod go/orchestrator/go.sum ./go/orchestrator/
 WORKDIR /app/go/orchestrator
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 
 # Copy source code

@@ -337,6 +337,8 @@ services:
         condition: service_healthy
     ports:
       - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     healthcheck:
       test: ['CMD-SHELL', 'python -c "import urllib.request,sys; urllib.request.urlopen(''http://localhost:8000/health/live''); print(''ok'')"']
       interval: 10s

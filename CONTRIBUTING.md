@@ -39,7 +39,7 @@ There are many ways to contribute to Shannon:
 | Redis | 6379 | Session cache and pub/sub |
 | Qdrant | 6333 | Vector database |
 | Temporal | 7233 | Workflow engine (UI on 8088) |
-| Prometheus | 9090 | Metrics collection |
+| Prometheus | 9091 | Metrics collection |
 | Grafana | 3030 | Metrics visualization |
 
 ### Development Setup
@@ -446,7 +446,7 @@ redis-cli GET session:SESSION_ID | jq '.total_tokens_used'
 4. Rebuild and test: `docker compose build && docker compose up -d`
 
 ### Performance Optimization
-1. Check metrics at `http://localhost:9090` (Prometheus)
+1. Check metrics at `http://localhost:9091` (Prometheus)
 2. Review dashboard at `http://localhost:2111` (Shannon Dashboard)
 3. Use `make replay` for deterministic testing
 4. Profile with service-specific tools

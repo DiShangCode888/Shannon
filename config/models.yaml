@@ -23,7 +23,7 @@ model_tiers:
         priority: 2
       - provider: anthropic
         model: claude-haiku-4-5-20251001
-        priority: 1
+        priority: 10
       - provider: xai
         model: grok-3-mini
         priority: 3
@@ -45,7 +45,9 @@ model_tiers:
       - provider: zai
         model: glm-4.5-flash
         priority: 9
-
+      - provider: vllm
+        model: qwen
+        priority: 1
   medium:
     # Target allocation: 40% (not enforced - actual usage depends on complexity)
     # Standard models with good capability/cost balance, not heavy reasoning
@@ -55,7 +57,7 @@ model_tiers:
         priority: 2
       - provider: anthropic
         model: claude-sonnet-4-5-20250929
-        priority: 1
+        priority: 10
       - provider: xai
         model: grok-4-fast-non-reasoning
         priority: 3
@@ -80,6 +82,9 @@ model_tiers:
       - provider: zai
         model: glm-4.5-air
         priority: 10
+      - provider: vllm
+        model: qwen
+        priority: 1
 
   large:
     # Target allocation: 10% (not enforced - actual usage depends on complexity)
@@ -87,7 +92,7 @@ model_tiers:
     providers:
       - provider: openai
         model: gpt-5.1
-        priority: 1
+        priority: 10
       - provider: anthropic
         model: claude-opus-4-1-20250805
         priority: 2
@@ -112,6 +117,9 @@ model_tiers:
       - provider: zai
         model: glm-4.6
         priority: 9
+      - provider: vllm
+        model: qwen
+        priority: 1
 
 # Model selection strategy
 selection_strategy:
@@ -195,7 +203,12 @@ provider_settings:
     base_url: https://api.cohere.ai/v1
     timeout: 60
     max_retries: 3
-
+  
+  vllm:
+    base_url: http://host.docker.internal:9000/v1
+    timeout: 300
+    max_retries: 3
+    
 model_catalog:
   openai:
     gpt-5.1:
@@ -451,7 +464,6 @@ model_catalog:
       supports_streaming: true
       supports_vision: true
       enabled: false  # disabled pending provider availability
-
   mistral:
     ministral-8b-instruct-2410:
       model_id: mistralai/Ministral-8B-Instruct-2410
@@ -530,6 +542,16 @@ model_catalog:
       supports_functions: false
       supports_streaming: true
 
+  vllm:
+    qwen:
+      model_id: qwen
+      tier: large
+      context_window: 131072
+      max_tokens: 8192
+      supports_functions: true
+      supports_streaming: true
+      enabled: true  # enabled
+    
 # Centralized model pricing (USD per 1K tokens)
 # Updated: November 2025 with latest pricing
 # Used across Go/Rust/Python for consistent cost calculation.

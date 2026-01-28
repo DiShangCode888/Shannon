@@ -13,7 +13,7 @@ This is a Docker Compose based monitoring solution that integrates Grafana, Prom
 │ (Collect Metrics)│     │  (Store Metrics) │     │ (Visualization)│
 │                 │◀────│                  │◀────│                │
 └─────────────────┘     └──────────────────┘     └────────────────┘
-     :9100                    :9090                    :3030
+     :9100                    :9091                    :3030
 ```
 
 ## Component Description
@@ -22,8 +22,8 @@ This is a Docker Compose based monitoring solution that integrates Grafana, Prom
 
 ### 1. **shannon-prometheus-1** (v2.39.0)
 - **Function**: Time-series database responsible for collecting and storing metric data
-- **Port**: 9090
-- **Web UI**: http://localhost:9090
+- **Port**: 9091
+- **Web UI**: http://localhost:9091
 - **Data Collection Interval**: 15 seconds
 
 ### 2. **shannon-grafana-1** (latest)
@@ -230,7 +230,7 @@ du -sh data/grafana-data/
 
 ```bash
 # Check port usage
-netstat -tunlp | grep -E "3030|9090|9100|2111"
+netstat -tunlp | grep -E "3030|9091|9100|2111"
 # Port 3030: Grafana
 # Port 2111: Shannon Dashboard
 # Port 9090: Prometheus

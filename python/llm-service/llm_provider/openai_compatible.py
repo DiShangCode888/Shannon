@@ -237,6 +237,8 @@ class OpenAICompatibleProvider(LLMProvider):
         try:
             response = await self.client.chat.completions.create(**api_request)
         except Exception as e:
+            import logging
+            logging.error(f"OpenAI-compatible API detailed error: {e}")
             raise Exception(f"OpenAI-compatible API error ({self.base_url}): {e}")
 
         latency_ms = int((time.time() - start_time) * 1000)

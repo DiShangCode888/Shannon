@@ -6,7 +6,7 @@ services:
       - ./data/prometheus-data:/prometheus
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "9091:9091"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -46,7 +46,7 @@ services:
       - GRAFANA_USER=shannon
       - GRAFANA_PASSWORD=shannon
       - DATASOURCE_NAME=Prometheus
-      - PROMETHEUS_URL=http://shannon-prometheus-1:9090
+      - PROMETHEUS_URL=http://shannon-prometheus-1:9091
     command: |
       sh -c "
         apk add --no-cache curl jq bash &&
